@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Direct Purchase Playbook | Craig Snyder | Dash-2 Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #032c6b;
+    --navy-dark: #021e4a;
+    --gold: #C9A84C;
+    --gold-light: #d9bc72;
+    --steel: #8FA7C9;
+    --light-bg: #F5F0E8;
+    --charcoal: #3d3e3d;
+    --mid-gray: #666;
+    --dark: #3d3e3d;
+    --white: #ffffff;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--light-bg);
+    color: var(--dark);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 60%, #1a4a9a 100%);
+    padding: 48px 24px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    border: 2px solid rgba(201,168,76,0.2);
+    border-radius: 50%;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -30px;
+    width: 150px; height: 150px;
+    border: 2px solid rgba(201,168,76,0.15);
+    border-radius: 50%;
+  }
+  .hero-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-sub {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 6px;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(201,168,76,0.2);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+  }
+  .hero-ctas {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .btn-primary {
+    display: block;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    padding: 14px 24px;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+  }
+  .btn-secondary {
+    display: block;
+    background: transparent;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 24px;
+    border-radius: 4px;
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  .stars-bar {
+    margin-top: 28px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.8);
+  }
+  .stars-bar span { color: var(--gold); font-size: 16px; }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--navy-dark);
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 10px 10px 0;
+    gap: 6px;
+    border-bottom: 3px solid rgba(201,168,76,0.3);
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    flex-shrink: 0;
+    padding: 9px 14px 11px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--navy-dark);
+    cursor: pointer;
+    white-space: nowrap;
+    border-radius: 6px 6px 0 0;
+    background: var(--gold);
+    border: 1px solid var(--gold-light);
+    border-bottom: none;
+    position: relative;
+    transition: all 0.2s;
+    transform: translateY(3px);
+  }
+  .nav-tab:hover {
+    color: var(--navy-dark);
+    background: var(--gold-light);
+    transform: translateY(1px);
+  }
+  .nav-tab.active {
+    color: var(--white);
+    background: var(--navy);
+    border-color: #2a5090;
+    transform: translateY(0px);
+    box-shadow: 0 -3px 12px rgba(3,44,107,0.5);
+  }
+  .nav-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -11px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--navy);
+    z-index: 10;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    display: none;
+    padding: 28px 20px;
+    max-width: 640px;
+    margin: 0 auto;
+    animation: fadeIn 0.3s ease;
+  }
+  .section.active { display: block; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+    line-height: 1.2;
+    padding-bottom: 14px;
+    border-bottom: 3px solid var(--gold);
+  }
+
+  p { font-size: 15px; color: var(--dark); margin-bottom: 14px; line-height: 1.7; }
+
+  /* ── CALLOUT BOX ── */
+  .callout {
+    background: var(--white);
+    border-left: 4px solid var(--navy);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 20px;
+    margin: 20px 0;
+    box-shadow: 0 2px 10px rgba(3,44,107,0.06);
+  }
+  .callout-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .callout p { margin-bottom: 10px; font-size: 14px; }
+  .callout p:last-child { margin-bottom: 0; }
+  .callout strong { color: var(--navy); }
+
+  /* ── BULLET LIST ── */
+  .bullet-list { list-style: none; margin: 14px 0; }
+  .bullet-list li {
+    font-size: 15px;
+    color: var(--dark);
+    padding: 8px 0 8px 24px;
+    position: relative;
+    border-bottom: 1px solid #e8e2d8;
+    line-height: 1.5;
+  }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+    font-size: 13px;
+    top: 9px;
+  }
+
+  /* ── OPTION CARDS ── */
+  .option-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 22px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(3,44,107,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .option-card.primary {
+    border: 2px solid var(--gold);
+  }
+  .option-card.secondary {
+    border: 1px solid #ddd6c8;
+    opacity: 0.92;
+  }
+  .option-badge {
+    position: absolute;
+    top: 0; right: 0;
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-size: 10px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 0 10px 0 8px;
+  }
+  .option-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--steel);
+    margin-bottom: 4px;
+  }
+  .option-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 10px;
+  }
+  .option-desc {
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .option-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .meta-item {
+    background: var(--light-bg);
+    border-radius: 6px;
+    padding: 10px 12px;
+  }
+  .meta-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--mid-gray);
+    margin-bottom: 3px;
+  }
+  .meta-value {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .meta-value.green { color: #2a7a4a; }
+  .meta-value.amber { color: #b87a20; }
+
+  /* ── PRICING SECTION ── */
+  .pricing-step {
+    display: flex;
+    gap: 14px;
+    margin-bottom: 20px;
+    align-items: flex-start;
+  }
+  .pricing-step-num {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .pricing-step-content {}
+  .pricing-step-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .pricing-step-desc {
+    font-size: 14px;
+    color: var(--dark);
+    line-height: 1.6;
+    margin: 0;
+  }
+  .pricing-connector {
+    width: 2px;
+    height: 20px;
+    background: var(--steel);
+    margin-left: 15px;
+    margin-bottom: 0;
+  }
+
+  /* ── NET SHEET COMPARISON ── */
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 16px 0;
+  }
+  .compare-table th {
+    padding: 10px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    text-align: left;
+  }
+  .compare-table th:first-child {
+    background: var(--navy);
+    color: var(--white);
+    width: 40%;
+  }
+  .compare-table th.direct-col {
+    background: var(--gold);
+    color: var(--navy-dark);
+    text-align: center;
+    width: 30%;
+  }
+  .compare-table th.retail-col {
+    background: var(--steel);
+    color: var(--navy-dark);
+    text-align: center;
+    width: 30%;
+  }
+  .compare-table td {
+    padding: 9px 10px;
+    border-bottom: 1px solid #e8e2d8;
+    vertical-align: top;
+    color: var(--dark);
+  }
+  .compare-table td:nth-child(2),
+  .compare-table td:nth-child(3) {
+    text-align: center;
+    font-weight: 600;
+  }
+  .compare-table tr:nth-child(even) td { background: #faf7f2; }
+  .compare-table .section-row td {
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 7px 10px;
+  }
+  .compare-table .total-row td {
+    background: var(--navy);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14px;
+    border-top: 2px solid var(--gold);
+    padding: 11px 10px;
+  }
+  .compare-table .total-row td:nth-child(2) {
+    background: var(--gold);
+    color: var(--navy-dark);
+  }
+  .good { color: #2a7a4a; }
+  .neutral { color: var(--mid-gray); }
+  .fill { color: var(--steel); font-style: italic; font-size: 12px; }
+
+  /* ── TIMELINE ── */
+  .timeline { margin: 20px 0; }
+  .timeline-item {
+    display: flex;
+    gap: 0;
+    position: relative;
+  }
+  .timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 44px;
+    flex-shrink: 0;
+  }
+  .timeline-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 4px;
+    border: 2px solid var(--white);
+    box-shadow: 0 0 0 2px var(--gold);
+    background: var(--gold);
+  }
+  .timeline-line {
+    width: 2px;
+    flex: 1;
+    min-height: 20px;
+    margin: 4px 0;
+    background: var(--gold);
+  }
+  .timeline-line.none { background: transparent; }
+  .timeline-content {
+    flex: 1;
+    padding: 0 0 22px 14px;
+  }
+  .timeline-phase {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2px;
+  }
+  .timeline-timing {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .timeline-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonial {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(3,44,107,0.08);
+    border-top: 3px solid var(--gold);
+    position: relative;
+  }
+  .testimonial::before {
+    content: '\201C';
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    color: var(--gold);
+    opacity: 0.2;
+    position: absolute;
+    top: -8px;
+    left: 16px;
+    line-height: 1;
+  }
+  .testimonial-text {
+    font-size: 15px;
+    color: var(--dark);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 14px;
+    padding-top: 8px;
+  }
+  .testimonial-name {
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--navy);
+  }
+  .testimonial-context {
+    font-size: 12px;
+    color: var(--mid-gray);
+    margin-top: 2px;
+  }
+  .stars { color: var(--gold); font-size: 14px; margin-bottom: 8px; }
+
+  /* ── MILITARY ── */
+  .install-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 16px 0;
+  }
+  .install-tag {
+    background: var(--navy);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 12px;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .scenario-item {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 6px rgba(3,44,107,0.07);
+    border-left: 3px solid var(--steel);
+  }
+  .scenario-title { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .scenario-desc { font-size: 13px; color: var(--mid-gray); margin: 0; line-height: 1.5; }
+
+  /* ── FOOTER CTA ── */
+  .footer-cta {
+    background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+    padding: 36px 24px;
+    text-align: center;
+    color: var(--white);
+  }
+  .footer-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+  .footer-cta p { color: rgba(255,255,255,0.7); font-size: 14px; margin-bottom: 24px; }
+  .cta-buttons { display: flex; flex-direction: column; gap: 12px; max-width: 280px; margin: 0 auto; }
+  .cta-call {
+    display: block;
+    background: var(--gold);
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    padding: 16px;
+    border-radius: 4px;
+  }
+  .cta-email {
+    display: block;
+    background: transparent;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 14px;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 4px;
+  }
+  .cta-schedule {
+    display: block;
+    color: rgba(255,255,255,0.6);
+    text-decoration: underline;
+    font-size: 13px;
+    padding: 8px;
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Dash-2 Real Estate · Hampton Roads, VA</div>
+  <h1>Direct Purchase<br><span>Playbook</span></h1>
+  <div class="hero-sub">Prepared by Craig Snyder, Broker/Owner</div>
+  <div class="hero-badge">Off-Market · No Fees · Your Terms</div>
+  <div class="hero-ctas">
+    <a href="tel:7575507122" class="btn-primary">📞 Call Craig: 757-550-7122</a>
+    <a href="mailto:Craig@dash-2.com" class="btn-secondary">✉ Craig@dash-2.com</a>
+  </div>
+  <div class="stars-bar">
+    <span>★★★★★</span> 5.0 · 33 Google Reviews
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav-tabs" id="navTabs">
+  <div class="nav-tab active" onclick="showSection('bio', this)">Who I Am</div>
+  <div class="nav-tab" onclick="showSection('options', this)">Your Options</div>
+  <div class="nav-tab" onclick="showSection('pricing', this)">How I Price</div>
+  <div class="nav-tab" onclick="showSection('netsheet', this)">Net Sheet</div>
+  <div class="nav-tab" onclick="showSection('next', this)">What's Next</div>
+  <div class="nav-tab" onclick="showSection('military', this)">Military/PCS</div>
+  <div class="nav-tab" onclick="showSection('reviews', this)">Reviews</div>
+</nav>
+
+<!-- WHO I AM -->
+<div class="section active" id="bio">
+  <div class="section-label">About</div>
+  <div class="section-title">Who I Am</div>
+  <p>Before you decide anything, you should know who you're dealing with. I'm not a hedge fund, a wholesaler, or an out-of-state operator running mailers. I'm a licensed broker who lives and works in Hampton Roads, and I buy properties with my own money.</p>
+  <p>That distinction matters. When I make you an offer, my name is on it — and my license is on the line. You have recourse that you don't have with most cash buyers.</p>
+
+  <div class="callout">
+    <div class="callout-title">Craig Snyder — Broker/Owner, Dash-2 Real Estate</div>
+    <p>I spent <strong>24 years in the Navy</strong> as a carrier aviator — F-14s and F-18s, two commanding officer tours, seven deployments. That career taught me to operate with systems, make decisions under pressure, and execute with precision. I run my real estate business the same way.</p>
+    <p>I'm a full-time broker, part-time airline pilot, and active real estate investor. I buy residential and commercial properties for my own portfolio. When I sit across the table from you, I'm not just an agent — I'm a buyer who has skin in the game.</p>
+  </div>
+
+  <p style="font-weight:700; color:var(--navy); margin-top:20px;">Why Work With Me Directly</p>
+  <ul class="bullet-list">
+    <li><strong>Licensed accountability.</strong> I'm a Virginia licensed broker. You have legal protections and recourse that no unlicensed cash buyer can offer.</li>
+    <li><strong>I know this market cold.</strong> I literally wrote the book on selling homes in Hampton Roads. I price based on real data, not guesswork.</li>
+    <li><strong>I'm an advisor, not a predator.</strong> I will show you all your options — including ones that don't involve me buying your house — and let you decide what fits best.</li>
+    <li><strong>I've done the complex deals.</strong> Seller financing, lease-options, leaseback arrangements, subject-to, inherited properties, estates, PCS timelines. If your situation is complicated, I've probably seen it.</li>
+  </ul>
+</div>
+
+<!-- YOUR OPTIONS -->
+<div class="section" id="options">
+  <div class="section-label">The Decision</div>
+  <div class="section-title">Your Three Options</div>
+  <p>I don't have one tool. I have three. After we talk about your property and your situation, we'll look at all of them — and you decide what fits.</p>
+
+  <!-- Option 1 - PRIMARY -->
+  <div class="option-card primary">
+    <div class="option-badge">Featured</div>
+    <div class="option-number">Option 01</div>
+    <div class="option-title">I Buy It Directly</div>
+    <p class="option-desc">I purchase your property directly — no MLS, no showings, no agent commissions on your end, no waiting on a buyer's financing to close. We agree on a price and a date, and we close. Simple.</p>
+    <p class="option-desc">This is not the highest price you'll ever see on paper. It is the most certain outcome, the fastest timeline, and the cleanest transaction. For some sellers, that's worth more than chasing retail.</p>
+    <div class="option-meta">
+      <div class="meta-item">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value green">14–30 Days</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Certainty</div>
+        <div class="meta-value green">Very High</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Showings</div>
+        <div class="meta-value green">None</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Your Costs</div>
+        <div class="meta-value green">Minimal</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option 2 -->
+  <div class="option-card secondary">
+    <div class="option-number">Option 02</div>
+    <div class="option-title">I List It For You As-Is</div>
+    <p class="option-desc">If your property can compete on the open market without repairs or staging, listing it as-is may net you more than a direct purchase. I price it aggressively, market it thoroughly, and manage the process from photos to closing.</p>
+    <p class="option-desc">You get my full brokerage capabilities — MLS exposure, targeted advertising, agent outreach — without having to lift a hammer first.</p>
+    <div class="option-meta">
+      <div class="meta-item">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value amber">30–60 Days</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Certainty</div>
+        <div class="meta-value amber">Moderate</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Showings</div>
+        <div class="meta-value amber">Yes</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Potential Net</div>
+        <div class="meta-value amber">Higher</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Option 3 -->
+  <div class="option-card secondary">
+    <div class="option-number">Option 03</div>
+    <div class="option-title">Fix It, Then List It</div>
+    <p class="option-desc">If your property needs work and you have the time and resources to address it, a pre-sale renovation can significantly increase your net proceeds. I'll tell you exactly which repairs move the needle and which ones don't — so you're not spending money on things buyers won't pay for.</p>
+    <div class="option-meta">
+      <div class="meta-item">
+        <div class="meta-label">Timeline</div>
+        <div class="meta-value amber">60–120 Days</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Certainty</div>
+        <div class="meta-value amber">Moderate</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Upfront Cost</div>
+        <div class="meta-value amber">Yes</div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-label">Potential Net</div>
+        <div class="meta-value green">Highest</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout" style="margin-top:8px;">
+    <div class="callout-title">No Pressure. Your Call.</div>
+    <p>I present all three options with honest numbers attached to each one. I don't steer you. The right answer depends on your timeline, your property's condition, and what you need out of the transaction. We figure that out together.</p>
+  </div>
+</div>
+
+<!-- HOW I PRICE -->
+<div class="section" id="pricing">
+  <div class="section-label">Transparency</div>
+  <div class="section-title">How I Price a Direct Offer</div>
+  <p>Most cash buyers won't tell you how they arrived at their number. I will. Not because I'm required to — because an informed seller makes a better decision, and better decisions lead to cleaner transactions.</p>
+  <p>Here's the framework I use:</p>
+
+  <div style="margin: 24px 0;">
+    <div class="pricing-step">
+      <div class="pricing-step-num">1</div>
+      <div class="pricing-step-content">
+        <div class="pricing-step-title">After Repair Value (ARV)</div>
+        <p class="pricing-step-desc">I start with what your property would sell for on the open market in fully repaired, market-ready condition. This is based on recent comparable sales in your specific neighborhood — not Zillow, not averages.</p>
+      </div>
+    </div>
+    <div class="pricing-connector"></div>
+
+    <div class="pricing-step">
+      <div class="pricing-step-num">2</div>
+      <div class="pricing-step-content">
+        <div class="pricing-step-title">Cost of Repairs</div>
+        <p class="pricing-step-desc">I walk the property and estimate what it will actually take to bring it to market-ready condition. I'm not padding this number — I do the work myself and know what things cost in Hampton Roads.</p>
+      </div>
+    </div>
+    <div class="pricing-connector"></div>
+
+    <div class="pricing-step">
+      <div class="pricing-step-num">3</div>
+      <div class="pricing-step-content">
+        <div class="pricing-step-title">Holding & Transaction Costs</div>
+        <p class="pricing-step-desc">Financing, insurance, taxes, utilities, and closing costs while I own and renovate the property. These are real costs that any buyer — including retail buyers — ultimately prices into their offer.</p>
+      </div>
+    </div>
+    <div class="pricing-connector"></div>
+
+    <div class="pricing-step">
+      <div class="pricing-step-num">4</div>
+      <div class="pricing-step-content">
+        <div class="pricing-step-title">My Offer</div>
+        <p class="pricing-step-desc">What's left after those deductions is the range I can work within. I'm not hiding a margin — I need one to make the deal work. What I can tell you is that I'm not a wholesaler flipping your contract for a fee. I'm the actual buyer.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">The Honest Version</div>
+    <p>A direct purchase offer will be lower than a retail sale price. That gap is the cost of speed, certainty, and convenience. Whether that trade-off makes sense for you depends on your situation — and that's exactly what we'll figure out together before you decide anything.</p>
+  </div>
+</div>
+
+<!-- NET SHEET COMPARISON -->
+<div class="section" id="netsheet">
+  <div class="section-label">The Math</div>
+  <div class="section-title">Direct vs. Retail — Side by Side</div>
+  <p>The headline price isn't the number that matters. What matters is what you actually walk away with — after fees, repairs, carrying costs, and time. Here's how a direct purchase compares to a retail sale on the same property.</p>
+  <p style="font-size:13px; color:var(--mid-gray);">Example based on a $350,000 estimated retail value property needing moderate repairs. Your numbers will differ — I'll build you a personalized version.</p>
+
+  <div style="overflow-x:auto; margin-top:16px;">
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th class="direct-col">Direct Purchase</th>
+          <th class="retail-col">Retail Listing</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="section-row"><td colspan="3">Starting Point</td></tr>
+        <tr>
+          <td>Offer / Sale Price</td>
+          <td>$290,000</td>
+          <td>$350,000</td>
+        </tr>
+
+        <tr class="section-row"><td colspan="3">Your Costs</td></tr>
+        <tr>
+          <td>Pre-Sale Repairs</td>
+          <td class="good">$0</td>
+          <td>($15,000–$25,000)</td>
+        </tr>
+        <tr>
+          <td>Listing Commission (3%)</td>
+          <td class="good">$0</td>
+          <td>($10,500)</td>
+        </tr>
+        <tr>
+          <td>Buyer Agent (3%)</td>
+          <td class="good">$0</td>
+          <td>($10,500)</td>
+        </tr>
+        <tr>
+          <td>Seller Closing Costs</td>
+          <td>($2,500)</td>
+          <td>($3,500–$5,000)</td>
+        </tr>
+        <tr>
+          <td>Carrying Costs During Sale</td>
+          <td class="good">$0</td>
+          <td>($3,000–$6,000)</td>
+        </tr>
+        <tr>
+          <td>Staging / Photography</td>
+          <td class="good">$0</td>
+          <td>($1,000–$2,500)</td>
+        </tr>
+        <tr>
+          <td>Price Reductions / Negotiations</td>
+          <td class="good">$0</td>
+          <td>($3,500–$7,000)</td>
+        </tr>
+
+        <tr class="section-row"><td colspan="3">Timeline</td></tr>
+        <tr>
+          <td>Time to Close</td>
+          <td class="good" style="font-weight:700;">14–30 Days</td>
+          <td>60–120 Days</td>
+        </tr>
+        <tr>
+          <td>Certainty of Close</td>
+          <td class="good" style="font-weight:700;">Very High</td>
+          <td>Moderate</td>
+        </tr>
+
+        <tr class="total-row">
+          <td><strong>Est. Net Proceeds</strong></td>
+          <td><strong>~$287,500</strong></td>
+          <td><strong>~$278,000–$299,000</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout" style="margin-top:20px;">
+    <div class="callout-title">What This Shows</div>
+    <p>On paper, retail looks like $60,000 more. In practice, after costs, repairs, time, and uncertainty — the difference narrows significantly. Sometimes the direct offer wins outright. Sometimes retail is still the better choice. The right answer depends on your specific property and situation.</p>
+    <p><strong>I'll build you a personalized comparison</strong> once we've walked the property. No obligation, no pressure — just real numbers so you can make an informed decision.</p>
+  </div>
+</div>
+
+<!-- WHAT'S NEXT -->
+<div class="section" id="next">
+  <div class="section-label">Process</div>
+  <div class="section-title">What Happens Next</div>
+  <p>If a direct purchase makes sense, the process is straightforward. Here's what it looks like from our first conversation to closing day.</p>
+
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-marker">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-phase">Step 01</div>
+        <div class="timeline-timing">The Conversation</div>
+        <div class="timeline-desc">We talk — 15 to 30 minutes. You tell me about the property and what you need. I ask questions. No commitment, no pressure. I'm figuring out whether a direct purchase is even the right fit before we go any further.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-phase">Step 02</div>
+        <div class="timeline-timing">Property Walkthrough</div>
+        <div class="timeline-desc">I walk the property — usually within 48 hours of our first conversation. I'm assessing condition, estimating repairs, and building my offer. This is quick and non-invasive.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-phase">Step 03</div>
+        <div class="timeline-timing">Your Options Presentation</div>
+        <div class="timeline-desc">I present all three options with real numbers — direct purchase offer, as-is list price estimate, and fix-and-list projection. You compare them side by side and decide what makes sense for you.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-phase">Step 04</div>
+        <div class="timeline-timing">Contract & Earnest Money</div>
+        <div class="timeline-desc">If you choose the direct purchase, we execute a purchase agreement. I put earnest money down immediately. You have a written, binding commitment from day one — not a verbal promise.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-phase">Step 05</div>
+        <div class="timeline-timing">Due Diligence</div>
+        <div class="timeline-desc">Short inspection period — typically 7 to 10 days. I'm not looking for reasons to renegotiate. I'm confirming what I already assessed. If something major surfaces that I didn't account for, we discuss it openly.</div>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-marker">
+        <div class="timeline-dot"></div>
+        <div class="timeline-line none"></div>
+      </div>
+      <div class="timeline-content">
+        <div class="timeline-phase">Step 06</div>
+        <div class="timeline-timing">Closing Day — Your Timeline</div>
+        <div class="timeline-desc">We close on the date you chose. You pick the settlement company. You get your money. Done. Typical timeline: 14 to 30 days from contract execution — or longer if you need more time.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout-title">Flexible Terms Available</div>
+    <p>Standard cash close isn't the only option. Depending on your situation, I'm open to seller financing, leaseback arrangements (you sell and stay through your move date), or extended closings. If your situation is unusual, tell me — I've probably structured something like it before.</p>
+  </div>
+</div>
+
+<!-- MILITARY/PCS -->
+<div class="section" id="military">
+  <div class="section-label">Military & PCS</div>
+  <div class="section-title">Serving Those Who Serve</div>
+  <p style="font-weight:700; color:var(--gold);">Military & PCS Specialist — Hampton Roads</p>
+  <p>More than half of my clients are active duty, retired military, or veterans. A direct purchase can be particularly valuable for PCS sellers — no showings around your schedule, no waiting on a retail buyer, close before you report.</p>
+
+  <div class="callout">
+    <div class="callout-title">Why It Matters That Your Buyer Has a DD-214</div>
+    <ul class="bullet-list" style="margin-top:8px;">
+      <li>I'm familiar with the commands, installations, and operational tempo across Hampton Roads — I work around your schedule, not the other way around.</li>
+      <li>I understand PCS timelines, hard report dates, and what happens if your house doesn't sell in time. I've lived it.</li>
+      <li>When you're managing orders, a move, and a sale simultaneously — I make the property side of that equation disappear.</li>
+      <li>When you're buying from 1,500 miles away or working against a hard report date, I know how to make it happen.</li>
+    </ul>
+  </div>
+
+  <p style="font-weight:700; color:var(--navy); margin-top:20px; margin-bottom:12px;">Installations We Serve</p>
+  <div class="install-grid">
+    <div class="install-tag">Naval Station Norfolk</div>
+    <div class="install-tag">NAS Oceana</div>
+    <div class="install-tag">JB Little Creek</div>
+    <div class="install-tag">Dam Neck Annex</div>
+    <div class="install-tag">NSA Hampton Roads</div>
+    <div class="install-tag">Fort Story</div>
+    <div class="install-tag">Langley AFB</div>
+    <div class="install-tag">Norfolk Naval Shipyard</div>
+    <div class="install-tag">NMCP Portsmouth</div>
+    <div class="install-tag">USCG Base Portsmouth</div>
+  </div>
+
+  <p style="font-weight:700; color:var(--navy); margin-top:24px; margin-bottom:12px;">Common PCS Scenarios</p>
+  <div class="scenario-item">
+    <div class="scenario-title">Need to close before your report date</div>
+    <div class="scenario-desc">Direct purchase closes in 14–30 days. We pick a date that works around your orders.</div>
+  </div>
+  <div class="scenario-item">
+    <div class="scenario-title">Selling while deployed</div>
+    <div class="scenario-desc">Alexandra and I coordinate everything. Your spouse doesn't have to manage showings or negotiations alone.</div>
+  </div>
+  <div class="scenario-item">
+    <div class="scenario-title">Selling from out of state</div>
+    <div class="scenario-desc">We handle the walkthrough, the paperwork, and the closing remotely. You sign electronically.</div>
+  </div>
+  <div class="scenario-item">
+    <div class="scenario-title">Need a leaseback after closing</div>
+    <div class="scenario-desc">Sell now, stay through your move date. I'll structure a short-term leaseback so your timeline stays intact.</div>
+  </div>
+
+  <div class="testimonial" style="margin-top:24px;">
+    <div class="stars">★★★★★</div>
+    <div class="testimonial-text">"As a veteran, he understands the moving process of an active duty Sailor. It's not easy!"</div>
+    <div class="testimonial-name">Ariel Custodio</div>
+    <div class="testimonial-context">Active Duty Navy Sailor</div>
+  </div>
+</div>
+
+<!-- REVIEWS -->
+<div class="section" id="reviews">
+  <div class="section-label">Social Proof</div>
+  <div class="section-title">What Clients Say</div>
+  <p style="color:var(--mid-gray); font-size:14px; margin-bottom:20px;">5.0 stars · 33 Google Reviews · Dash-2 Real Estate</p>
+
+  <div class="testimonial">
+    <div class="stars">★★★★★</div>
+    <div class="testimonial-text">"The other agents couldn't sell our house for us. Craig and his team did! Their level of communication and service is off the charts."</div>
+    <div class="testimonial-name">Paul Chung</div>
+    <div class="testimonial-context">Virginia Beach Seller</div>
+  </div>
+
+  <div class="testimonial">
+    <div class="stars">★★★★★</div>
+    <div class="testimonial-text">"We did a VA loan assumption and the bank took forever to close. Craig stayed engaged the whole time, communicating with us throughout. Could not have asked for more."</div>
+    <div class="testimonial-name">Michael Pittman</div>
+    <div class="testimonial-context">Military Buyer · VA Loan Assumption</div>
+  </div>
+
+  <div class="testimonial">
+    <div class="stars">★★★★★</div>
+    <div class="testimonial-text">"The Snyder team helped us work through a tough rent vs. sell decision. Very thorough, gave us clear information that got us to a great decision."</div>
+    <div class="testimonial-name">Jeffrey Becker</div>
+    <div class="testimonial-context">Investment Property Owner</div>
+  </div>
+
+  <div class="testimonial">
+    <div class="stars">★★★★★</div>
+    <div class="testimonial-text">"Craig and Alex have been amazing through our home buying process. From dropping everything to see the house with us, they are zero pressure and completely dedicated."</div>
+    <div class="testimonial-name">The Christensens</div>
+    <div class="testimonial-context">Buyers near Naval Station Norfolk</div>
+  </div>
+
+  <div class="testimonial">
+    <div class="stars">★★★★★</div>
+    <div class="testimonial-text">"I reached out to Craig after falling on hard times after losing my husband. He was compassionate, professional, and helped me move forward. I'm so grateful."</div>
+    <div class="testimonial-name">Ashley Keys</div>
+    <div class="testimonial-context">Virginia Beach Seller</div>
+  </div>
+
+  <div class="testimonial">
+    <div class="stars">★★★★★</div>
+    <div class="testimonial-text">"Overall, great experience. Craig would be my first call if I were to move back to Virginia Beach."</div>
+    <div class="testimonial-name">Adrian Korduba</div>
+    <div class="testimonial-context">Virginia Beach</div>
+  </div>
+</div>
+
+<!-- FOOTER CTA -->
+<div class="footer-cta">
+  <h3>Let's Talk About Your Property.</h3>
+  <p>No commitment. No pressure. Just a straight conversation about your options and what makes the most sense for your situation.</p>
+  <div class="cta-buttons">
+    <a href="tel:7575507122" class="cta-call">📞 Call 757-550-7122</a>
+    <a href="mailto:Craig@dash-2.com" class="cta-email">✉ Craig@dash-2.com</a>
+    <a href="https://calendly.com/craigmsnyder/15min" class="cta-schedule">Schedule a 15-min call →</a>
+  </div>
+</div>
+
+<script>
+  function showSection(id, tab) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    tab.classList.add('active');
+    tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
