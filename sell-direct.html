@@ -435,8 +435,15 @@
     border-top: 2px solid var(--gold);
     padding: 11px 10px;
   }
+  .compare-table .total-row td:nth-child(1) strong {
+    color: var(--white);
+  }
   .compare-table .total-row td:nth-child(2) {
     background: var(--gold);
+    color: var(--navy-dark);
+  }
+  .compare-table .total-row td:nth-child(3) {
+    background: var(--steel);
     color: var(--navy-dark);
   }
   .good { color: #2a7a4a; }
@@ -877,7 +884,7 @@
         </tr>
 
         <tr class="total-row">
-          <td><strong>Est. Net Proceeds</strong></td>
+          <td style="background:var(--navy-dark); color:var(--white);"><strong style="color:var(--white);">Est. Net Proceeds</strong></td>
           <td><strong>~$287,500</strong></td>
           <td><strong>~$278,000–$299,000</strong></td>
         </tr>
