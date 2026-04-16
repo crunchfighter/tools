@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMA — 221 Cypress Road | Dash-2 Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #032c6b;
+    --gold:    #C9A84C;
+    --white:   #ffffff;
+    --cream:   #F5F0E8;
+    --charcoal:#3d3e3d;
+    --steel:   #8FA7C9;
+    --lgray:   #f0f2f5;
+    --green:   #1a6b2a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lato', 'Helvetica Neue', sans-serif; background: var(--lgray); color: var(--charcoal); }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    padding: 0.75rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 100;
+    border-bottom: 3px solid var(--gold);
+  }
+  nav .brand { color: var(--white); font-family: 'Times New Roman', serif; font-size: 1.1rem; font-weight: bold; }
+  nav .tagline { color: var(--gold); font-size: 0.8rem; font-style: italic; }
+  nav .contact a { color: var(--steel); font-size: 0.8rem; text-decoration: none; margin-left: 1rem; }
+  nav .contact a:hover { color: var(--gold); }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--navy);
+    padding: 3rem 2rem 2.5rem;
+    border-bottom: 4px solid var(--gold);
+  }
+  .hero-label { color: var(--gold); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .hero h1 { color: var(--white); font-family: 'Times New Roman', serif; font-size: 2.8rem; font-weight: bold; line-height: 1.1; }
+  .hero .sub { color: var(--steel); font-size: 1.1rem; margin-top: 0.4rem; }
+  .hero-meta { display: flex; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; }
+  .hero-meta .item { }
+  .hero-meta .item .label { color: var(--steel); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .hero-meta .item .value { color: var(--white); font-family: 'Times New Roman', serif; font-size: 1.1rem; font-weight: bold; }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 2rem 1.5rem; }
+  section { margin-bottom: 2.5rem; }
+
+  /* ── SECTION HEADERS ── */
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+  .section-header h2 { font-family: 'Times New Roman', serif; font-size: 1.5rem; color: var(--navy); font-weight: bold; }
+  .section-header .rule { flex: 1; height: 2px; background: var(--gold); }
+
+  /* ── CARDS GRID ── */
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+  .card { background: var(--cream); border: 1px solid var(--steel); border-radius: 4px; padding: 0.85rem 1rem; }
+  .card .card-label { color: var(--steel); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.3rem; }
+  .card .card-value { color: var(--charcoal); font-family: 'Times New Roman', serif; font-size: 1.05rem; font-weight: bold; }
+
+  /* ── NOTE BOX ── */
+  .note {
+    background: var(--cream);
+    border-left: 4px solid var(--steel);
+    padding: 0.75rem 1rem;
+    font-size: 0.82rem;
+    color: var(--steel);
+    border-radius: 0 4px 4px 0;
+    margin-top: 1rem;
+    font-style: italic;
+  }
+  .note strong { color: var(--navy); }
+
+  /* ── COMP CARDS ── */
+  .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .comp-card { background: var(--white); border-radius: 6px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .comp-card .comp-header { background: var(--navy); padding: 0.75rem 1rem; }
+  .comp-card .comp-num { color: var(--gold); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; }
+  .comp-card .comp-addr { color: var(--white); font-family: 'Times New Roman', serif; font-size: 1rem; font-weight: bold; }
+  .comp-card .comp-body { padding: 0.75rem 1rem; }
+  .comp-card .comp-row { display: flex; justify-content: space-between; align-items: center; padding: 0.3rem 0; border-bottom: 1px solid #eee; font-size: 0.83rem; }
+  .comp-card .comp-row:last-child { border-bottom: none; }
+  .comp-card .comp-row .cr-label { color: var(--steel); font-weight: 700; font-size: 0.72rem; text-transform: uppercase; }
+  .comp-card .comp-row .cr-val { color: var(--charcoal); }
+  .comp-card .comp-footer { background: var(--gold); padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+  .comp-card .comp-footer .cf-label { color: var(--navy); font-size: 0.65rem; font-weight: 700; text-transform: uppercase; }
+  .comp-card .comp-footer .cf-val { color: var(--navy); font-family: 'Times New Roman', serif; font-size: 1.1rem; font-weight: bold; }
+
+  /* ── ADJ TABLE ── */
+  .adj-table-wrap { overflow-x: auto; }
+  table.adj { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  table.adj th { background: var(--navy); color: var(--white); padding: 0.6rem 0.75rem; text-align: center; font-size: 0.78rem; font-weight: 700; }
+  table.adj th:first-child { text-align: left; }
+  table.adj td { padding: 0.55rem 0.75rem; text-align: center; border-bottom: 1px solid #ddd; }
+  table.adj td:first-child { text-align: left; font-weight: 700; color: var(--navy); background: var(--cream); }
+  table.adj tr:nth-child(even) td:not(:first-child) { background: var(--lgray); }
+  table.adj tr:nth-child(odd) td:not(:first-child) { background: var(--white); }
+  table.adj tr.net td { font-weight: 700; color: var(--green); background: #f0faf2 !important; }
+  table.adj tr.net td:first-child { color: var(--navy); background: var(--cream) !important; }
+  table.adj tr.adj-val td { background: var(--gold) !important; color: var(--navy); font-family: 'Times New Roman', serif; font-size: 0.95rem; font-weight: bold; }
+  .adj-note { font-size: 0.75rem; color: var(--steel); font-style: italic; margin-top: 0.5rem; }
+
+  /* ── VALUE BOXES ── */
+  .value-boxes { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  .vbox { background: var(--cream); border: 1px solid var(--steel); border-radius: 6px; padding: 1.25rem 1.5rem; }
+  .vbox.highlight { background: var(--gold); border-color: var(--gold); }
+  .vbox .vb-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--steel); margin-bottom: 0.4rem; }
+  .vbox.highlight .vb-label { color: var(--navy); }
+  .vbox .vb-value { font-family: 'Times New Roman', serif; font-size: 1.6rem; font-weight: bold; color: var(--navy); }
+  .vbox-note { font-size: 0.82rem; color: var(--steel); font-style: italic; }
+
+  /* ── FLAGS ── */
+  .flags { display: flex; flex-direction: column; gap: 0.75rem; }
+  .flag { display: flex; gap: 0; background: var(--cream); border-radius: 4px; overflow: hidden; }
+  .flag .flag-bar { width: 6px; background: var(--gold); flex-shrink: 0; }
+  .flag .flag-body { padding: 0.85rem 1rem; }
+  .flag .flag-title { font-family: 'Times New Roman', serif; font-weight: bold; color: var(--navy); font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .flag .flag-text { font-size: 0.83rem; color: var(--charcoal); line-height: 1.5; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy);
+    border-top: 3px solid var(--gold);
+    color: var(--white);
+    padding: 2rem;
+    margin-top: 3rem;
+  }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-name { font-family: 'Times New Roman', serif; font-size: 1.3rem; font-weight: bold; }
+  .footer-title { color: var(--gold); font-size: 0.85rem; margin-top: 0.15rem; }
+  .footer-contact { text-align: right; }
+  .footer-contact a { color: var(--steel); font-size: 0.85rem; text-decoration: none; display: block; }
+  .footer-contact a:hover { color: var(--gold); }
+  .footer-disclaimer { max-width: 1100px; margin: 1rem auto 0; font-size: 0.72rem; color: var(--steel); font-style: italic; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 0.75rem; }
+
+  @media (max-width: 700px) {
+    .hero h1 { font-size: 1.8rem; }
+    .value-boxes { grid-template-columns: 1fr; }
+    .comp-grid { grid-template-columns: 1fr; }
+    nav .contact { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div>
+    <div class="brand">Dash-2 Real Estate</div>
+    <div class="tagline">Your Real Estate Wingman!</div>
+  </div>
+  <div class="contact">
+    <a href="tel:7575507122">(757) 550-7122</a>
+    <a href="mailto:craig@craigsnyderteam.com">craig@craigsnyderteam.com</a>
+    <a href="https://craigsnyderteam.com" target="_blank">craigsnyderteam.com</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="container" style="padding-top:0; padding-bottom:0;">
+    <div class="hero-label">Comparative Market Analysis &mdash; Confidential Draft &mdash; April 2026</div>
+    <h1>221 Cypress Road</h1>
+    <div class="sub">Portsmouth, Virginia 23701 &nbsp;&bull;&nbsp; Park Manor (083)</div>
+    <div class="hero-meta">
+      <div class="item"><div class="label">Beds</div><div class="value">4</div></div>
+      <div class="item"><div class="label">Baths</div><div class="value">2 Full / 1 Half</div></div>
+      <div class="item"><div class="label">Living Area</div><div class="value">2,750 sq ft</div></div>
+      <div class="item"><div class="label">Lot</div><div class="value">0.50 Acres</div></div>
+      <div class="item"><div class="label">Year Built</div><div class="value">1951</div></div>
+      <div class="item"><div class="label">Garage</div><div class="value">None</div></div>
+      <div class="item"><div class="label">Flood Zone</div><div class="value">Zone X (out of SFHA)</div></div>
+      <div class="item"><div class="label">Last Sale</div><div class="value">$260,000 &mdash; Jun 2020</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SUBJECT PROPERTY -->
+  <section>
+    <div class="section-header"><h2>Subject Property</h2><div class="rule"></div></div>
+    <div class="cards">
+      <div class="card"><div class="card-label">Subdivision</div><div class="card-value">Park Manor (083)</div></div>
+      <div class="card"><div class="card-label">Style</div><div class="card-value">Traditional, 2-Story</div></div>
+      <div class="card"><div class="card-label">Year Built</div><div class="card-value">1951</div></div>
+      <div class="card"><div class="card-label">Living Area</div><div class="card-value">2,750 sq ft</div></div>
+      <div class="card"><div class="card-label">Bedrooms</div><div class="card-value">4</div></div>
+      <div class="card"><div class="card-label">Baths</div><div class="card-value">2 Full / 1 Half</div></div>
+      <div class="card"><div class="card-label">Lot Size</div><div class="card-value">0.50 Acres</div></div>
+      <div class="card"><div class="card-label">Garage</div><div class="card-value">None</div></div>
+      <div class="card"><div class="card-label">Fireplace</div><div class="card-value">2</div></div>
+      <div class="card"><div class="card-label">HOA</div><div class="card-value">None</div></div>
+      <div class="card"><div class="card-label">Tax Assessment</div><div class="card-value">$328,130 (2025)</div></div>
+      <div class="card"><div class="card-label">Last Sale Price</div><div class="card-value">$260,000 &mdash; Jun 2020</div></div>
+    </div>
+    <div class="note"><strong>Note:</strong> The Portsmouth tax record shows 3 bedrooms and 2,850 sq ft, which conflicts with the 2020 MLS data of 4 bedrooms and 2,750 sq ft. MLS data is used for this analysis. This discrepancy should be resolved before listing to avoid appraisal complications.</div>
+  </section>
+
+  <!-- COMPARABLE SALES -->
+  <section>
+    <div class="section-header"><h2>Comparable Sales</h2><div class="rule"></div></div>
+    <div class="comp-grid">
+
+      <div class="comp-card">
+        <div class="comp-header"><div class="comp-num">Comp 1 &mdash; Primary</div><div class="comp-addr">400 Kay Rd</div></div>
+        <div class="comp-body">
+          <div class="comp-row"><span class="cr-label">Subdivision</span><span class="cr-val">Park Manor</span></div>
+          <div class="comp-row"><span class="cr-label">Closed</span><span class="cr-val">Dec 2025</span></div>
+          <div class="comp-row"><span class="cr-label">Sale Price</span><span class="cr-val">$381,000</span></div>
+          <div class="comp-row"><span class="cr-label">Bed / Bath</span><span class="cr-val">4 bd / 2 full / 1 half</span></div>
+          <div class="comp-row"><span class="cr-label">GLA</span><span class="cr-val">1,931 sq ft</span></div>
+          <div class="comp-row"><span class="cr-label">Lot</span><span class="cr-val">0.310 acres</span></div>
+          <div class="comp-row"><span class="cr-label">Garage</span><span class="cr-val">Yes</span></div>
+          <div class="comp-row"><span class="cr-label">Year Built</span><span class="cr-val">1955</span></div>
+          <div class="comp-row"><span class="cr-label">Net Adjustment</span><span class="cr-val" style="color:var(--green);font-weight:700">+$29,140</span></div>
+        </div>
+        <div class="comp-footer"><span class="cf-label">Adjusted Value</span><span class="cf-val">$410,140</span></div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-header"><div class="comp-num">Comp 2 &mdash; Primary</div><div class="comp-addr">219 Cypress Rd</div></div>
+        <div class="comp-body">
+          <div class="comp-row"><span class="cr-label">Subdivision</span><span class="cr-val">Park Manor</span></div>
+          <div class="comp-row"><span class="cr-label">Closed</span><span class="cr-val">Mar 2026</span></div>
+          <div class="comp-row"><span class="cr-label">Sale Price</span><span class="cr-val">$362,500</span></div>
+          <div class="comp-row"><span class="cr-label">Bed / Bath</span><span class="cr-val">3 bd / 3 full / 0 half</span></div>
+          <div class="comp-row"><span class="cr-label">GLA</span><span class="cr-val">1,800 sq ft</span></div>
+          <div class="comp-row"><span class="cr-label">Lot</span><span class="cr-val">0.500 acres (est.)</span></div>
+          <div class="comp-row"><span class="cr-label">Garage</span><span class="cr-val">Yes</span></div>
+          <div class="comp-row"><span class="cr-label">Year Built</span><span class="cr-val">1951</span></div>
+          <div class="comp-row"><span class="cr-label">Net Adjustment</span><span class="cr-val" style="color:var(--green);font-weight:700">+$47,000</span></div>
+        </div>
+        <div class="comp-footer"><span class="cf-label">Adjusted Value</span><span class="cf-val">$409,500</span></div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-header" style="background:#1a5276;"><div class="comp-num">Comp 3 &mdash; Secondary</div><div class="comp-addr">202 Teal St</div></div>
+        <div class="comp-body">
+          <div class="comp-row"><span class="cr-label">Subdivision</span><span class="cr-val">Belmont-002</span></div>
+          <div class="comp-row"><span class="cr-label">Closed</span><span class="cr-val">Nov 2025</span></div>
+          <div class="comp-row"><span class="cr-label">Sale Price</span><span class="cr-val">$285,000</span></div>
+          <div class="comp-row"><span class="cr-label">Bed / Bath</span><span class="cr-val">4 bd / 1 full / 0 half</span></div>
+          <div class="comp-row"><span class="cr-label">GLA</span><span class="cr-val">1,350 sq ft</span></div>
+          <div class="comp-row"><span class="cr-label">Lot</span><span class="cr-val">0.190 acres</span></div>
+          <div class="comp-row"><span class="cr-label">Garage</span><span class="cr-val">Yes</span></div>
+          <div class="comp-row"><span class="cr-label">Year Built</span><span class="cr-val">1951</span></div>
+          <div class="comp-row"><span class="cr-label">Net Adjustment</span><span class="cr-val" style="color:var(--green);font-weight:700">+$70,000</span></div>
+        </div>
+        <div class="comp-footer"><span class="cf-label">Adjusted Value</span><span class="cf-val">$355,000</span></div>
+      </div>
+
+      <div class="comp-card">
+        <div class="comp-header" style="background:#1f618d;"><div class="comp-num">Comp 4 &mdash; Secondary</div><div class="comp-addr">208 Jacquelyn Dr</div></div>
+        <div class="comp-body">
+          <div class="comp-row"><span class="cr-label">Subdivision</span><span class="cr-val">Belmont-002</span></div>
+          <div class="comp-row"><span class="cr-label">Closed</span><span class="cr-val">Dec 2025</span></div>
+          <div class="comp-row"><span class="cr-label">Sale Price</span><span class="cr-val">$280,000</span></div>
+          <div class="comp-row"><span class="cr-label">Bed / Bath</span><span class="cr-val">4 bd / 1 full / 0 half</span></div>
+          <div class="comp-row"><span class="cr-label">GLA</span><span class="cr-val">1,255 sq ft</span></div>
+          <div class="comp-row"><span class="cr-label">Lot</span><span class="cr-val">0.260 acres</span></div>
+          <div class="comp-row"><span class="cr-label">Garage</span><span class="cr-val">Yes</span></div>
+          <div class="comp-row"><span class="cr-label">Year Built</span><span class="cr-val">1953</span></div>
+          <div class="comp-row"><span class="cr-label">Net Adjustment</span><span class="cr-val" style="color:var(--green);font-weight:700">+$75,700</span></div>
+        </div>
+        <div class="comp-footer"><span class="cf-label">Adjusted Value</span><span class="cf-val">$355,700</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ADJUSTMENT GRID -->
+  <section>
+    <div class="section-header"><h2>Adjustment Grid</h2><div class="rule"></div></div>
+    <div class="adj-table-wrap">
+      <table class="adj">
+        <thead>
+          <tr>
+            <th style="text-align:left">Feature</th>
+            <th>Subject</th>
+            <th>Comp 1<br>400 Kay Rd</th>
+            <th>Comp 2<br>219 Cypress Rd</th>
+            <th>Comp 3<br>202 Teal St</th>
+            <th>Comp 4<br>208 Jacquelyn Dr</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Sale Price</td><td>&mdash;</td><td>$381,000</td><td>$362,500</td><td>$285,000</td><td>$280,000</td></tr>
+          <tr><td>GLA (sq ft)</td><td>2,750</td><td>1,931 / +$49,140</td><td>1,800 / +$57,000</td><td>1,350 / +$84,000</td><td>1,255 / +$89,700</td></tr>
+          <tr><td>Bedrooms</td><td>4</td><td>4 / $0</td><td>3 / +$5,000</td><td>4 / $0</td><td>4 / $0</td></tr>
+          <tr><td>Full Baths</td><td>2</td><td>2 / $0</td><td>3 / -$8,000</td><td>1 / +$8,000</td><td>1 / +$8,000</td></tr>
+          <tr><td>Half Baths</td><td>1</td><td>1 / $0</td><td>0 / +$3,000</td><td>0 / +$3,000</td><td>0 / +$3,000</td></tr>
+          <tr><td>Garage</td><td>None</td><td>Yes / -$10,000</td><td>Yes / -$10,000</td><td>Yes / -$10,000</td><td>Yes / -$10,000</td></tr>
+          <tr><td>Lot Size</td><td>0.50 ac</td><td>0.31 ac / -$10,000</td><td>0.50 ac / $0</td><td>0.19 ac / -$15,000</td><td>0.26 ac / -$15,000</td></tr>
+          <tr><td>Year Built</td><td>1951</td><td>1955 / $0</td><td>1951 / $0</td><td>1951 / $0</td><td>1953 / $0</td></tr>
+          <tr class="net"><td>Net Adjustment</td><td>&mdash;</td><td>+$29,140</td><td>+$47,000</td><td>+$70,000</td><td>+$75,700</td></tr>
+          <tr class="adj-val"><td>Adjusted Value</td><td>&mdash;</td><td>$410,140</td><td>$409,500</td><td>$355,000</td><td>$355,700</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="adj-note">GLA: $60/sq ft &nbsp;|&nbsp; Full bath: $8,000 &nbsp;|&nbsp; Half bath: $3,000 &nbsp;|&nbsp; Garage: $10,000/car &nbsp;|&nbsp; Lot: $15,000 per 0.25 ac &nbsp;|&nbsp; Age/condition assumed similar across all properties.</div>
+  </section>
+
+  <!-- OPINION OF VALUE -->
+  <section>
+    <div class="section-header"><h2>Opinion of Value</h2><div class="rule"></div></div>
+    <div class="value-boxes">
+      <div class="vbox">
+        <div class="vb-label">Adjusted Range</div>
+        <div class="vb-value">$355,000 &mdash; $410,000</div>
+      </div>
+      <div class="vbox highlight">
+        <div class="vb-label">Recommended List Price</div>
+        <div class="vb-value">$395,000</div>
+      </div>
+      <div class="vbox">
+        <div class="vb-label">RealAVM&trade; Estimate (CoreLogic)</div>
+        <div class="vb-value">$377,000</div>
+        <div style="font-size:0.72rem;color:var(--steel);margin-top:0.3rem;">Range: $343,100 &mdash; $410,900 &nbsp;|&nbsp; Confidence: 83</div>
+      </div>
+    </div>
+    <p class="vbox-note">Comps 1 and 2 carry the most weight. Both are in Park Manor; Comp 2 is on the same street with the same year built. Their net adjustments (8&ndash;13% of sale price) are the smallest, indicating the closest matches. Comps 3 and 4 serve as a floor reference given their larger GLA gap and different subdivision.</p>
+  </section>
+
+  <!-- KEY CONSIDERATIONS -->
+  <section>
+    <div class="section-header"><h2>Key Considerations</h2><div class="rule"></div></div>
+    <div class="flags">
+      <div class="flag">
+        <div class="flag-bar"></div>
+        <div class="flag-body">
+          <div class="flag-title">No Garage</div>
+          <div class="flag-text">Every comparable sale includes a garage. Buyers in the $355,000&ndash;$410,000 price range will raise this consistently. The $10,000 downward adjustment is conservative; buyer perception may discount more aggressively. Marketing should emphasize the half-acre lot and storage shed as partial offsets.</div>
+        </div>
+      </div>
+      <div class="flag">
+        <div class="flag-bar"></div>
+        <div class="flag-body">
+          <div class="flag-title">Tax Record Discrepancy</div>
+          <div class="flag-text">The Portsmouth city tax record lists 3 bedrooms and 2,850 sq ft, which conflicts with the 2020 MLS data of 4 bedrooms and 2,750 sq ft. An appraiser will typically start with the tax record. Recommend contacting the city assessor's office to correct this before going to market.</div>
+        </div>
+      </div>
+      <div class="flag">
+        <div class="flag-bar"></div>
+        <div class="flag-body">
+          <div class="flag-title">Comp Size Gap</div>
+          <div class="flag-text">The subject at 2,750 sq ft is meaningfully larger than all four comparables (range: 1,255&ndash;1,931 sq ft). GLA adjustments are significant, which reduces confidence in any single adjusted value. A walkthrough and additional data may surface better comps.</div>
+        </div>
+      </div>
+      <div class="flag">
+        <div class="flag-bar"></div>
+        <div class="flag-body">
+          <div class="flag-title">Strong Equity Position</div>
+          <div class="flag-text">Purchased June 2020 for $260,000 via VA financing. At the recommended list price of $395,000, gross appreciation is approximately $135,000 over six years &mdash; a 52% increase. This provides meaningful flexibility on pricing strategy.</div>
+        </div>
+      </div>
+      <div class="flag">
+        <div class="flag-bar" style="background:var(--steel);"></div>
+        <div class="flag-body">
+          <div class="flag-title" style="color:var(--steel);">Data Basis and Limitations</div>
+          <div class="flag-text">This analysis is based on MLS data as of April 2026 and has not been validated by a physical inspection. Adjustment rates are estimates, not derived from paired sales analysis. This CMA is a starting point for conversation, not a substitute for a licensed appraisal.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Craig Snyder</div>
+      <div class="footer-title">Broker / Owner &nbsp;&bull;&nbsp; Dash-2 Real Estate &nbsp;&bull;&nbsp; Your Real Estate Wingman!</div>
+    </div>
+    <div class="footer-contact">
+      <a href="tel:7575507122">(757) 550-7122</a>
+      <a href="mailto:craig@craigsnyderteam.com">craig@craigsnyderteam.com</a>
+      <a href="https://craigsnyderteam.com" target="_blank">craigsnyderteam.com</a>
+      <span style="color:var(--steel);font-size:0.8rem;">555 Belaire Ave Ste 210, Chesapeake, VA 23320</span>
+    </div>
+  </div>
+  <div class="footer-disclaimer">
+    This comparative market analysis is based on MLS data as of April 2026 and has not been validated by a physical inspection of the subject property or comparable sales. Adjustment rates are estimates based on general market practice and are not derived from paired sales analysis. This CMA is intended as a starting point for conversation and is not a substitute for a licensed real estate appraisal. Data source: REIN MLS. &copy; 2026 Dash-2 Real Estate.
+  </div>
+</footer>
+
+</body>
+</html>
