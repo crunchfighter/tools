@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seller Net Proceeds — 221 Cypress Rd | Dash-2 Real Estate</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:    #032c6b;
+    --gold:    #C9A84C;
+    --white:   #ffffff;
+    --cream:   #F5F0E8;
+    --charcoal:#3d3e3d;
+    --steel:   #8FA7C9;
+    --lgray:   #f0f2f5;
+    --green:   #1a6b2a;
+    --red:     #8b1a1a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Lato', sans-serif; background: var(--lgray); color: var(--charcoal); min-height: 100vh; }
+
+  /* NAV */
+  nav {
+    background: var(--navy);
+    border-bottom: 3px solid var(--gold);
+    padding: 0.75rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.1rem; }
+  .nav-tag { color: var(--gold); font-size: 0.75rem; font-style: italic; margin-top: 0.1rem; }
+  .nav-contact { color: var(--steel); font-size: 0.8rem; text-align: right; }
+
+  /* HERO */
+  .hero {
+    background: var(--navy);
+    padding: 2.5rem 2rem 2rem;
+    border-bottom: 4px solid var(--gold);
+  }
+  .hero-inner { max-width: 1000px; margin: 0 auto; }
+  .hero-label { color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .hero h1 { font-family: 'Playfair Display', serif; color: var(--white); font-size: 2.2rem; line-height: 1.15; }
+  .hero .sub { color: var(--steel); font-size: 0.95rem; margin-top: 0.35rem; }
+
+  /* MAIN LAYOUT */
+  .main { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem 3rem; }
+
+  /* INPUT SECTION */
+  .card {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+  .card-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 0.75rem 1.25rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .card-header h2 { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 400; }
+  .card-header .badge { background: var(--gold); color: var(--navy); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.08em; padding: 0.15rem 0.5rem; border-radius: 2px; text-transform: uppercase; }
+  .card-body { padding: 1.25rem; }
+
+  /* INPUT GRID */
+  .input-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .input-group label { display: block; font-size: 0.7rem; font-weight: 700; color: var(--steel); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+  .input-group input {
+    width: 100%; padding: 0.55rem 0.75rem;
+    border: 1.5px solid #ddd; border-radius: 4px;
+    font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--navy);
+    transition: border-color 0.15s;
+  }
+  .input-group input:focus { outline: none; border-color: var(--gold); }
+  .input-group .hint { font-size: 0.7rem; color: var(--steel); margin-top: 0.25rem; font-style: italic; }
+
+  /* RESULTS TABLE */
+  .results-table { width: 100%; border-collapse: collapse; }
+  .results-table th {
+    background: var(--navy); color: var(--white);
+    padding: 0.6rem 1rem; font-size: 0.75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.06em; text-align: left;
+  }
+  .results-table th:last-child { text-align: right; }
+  .results-table td { padding: 0.6rem 1rem; font-size: 0.9rem; border-bottom: 1px solid #eee; }
+  .results-table td:last-child { text-align: right; font-family: 'Playfair Display', serif; }
+  .results-table tr:nth-child(even) td { background: var(--cream); }
+  .results-table .section-row td {
+    background: #e8edf5; font-weight: 700; font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--navy);
+    padding: 0.4rem 1rem; border-bottom: none;
+  }
+  .results-table .subtotal-row td {
+    background: #dde4f0; font-weight: 700; color: var(--navy);
+    border-top: 2px solid var(--steel); border-bottom: 2px solid var(--steel);
+  }
+  .results-table .subtotal-row td:last-child { font-family: 'Playfair Display', serif; font-size: 1rem; }
+  .results-table .net-row td {
+    background: var(--gold); color: var(--navy); font-weight: 700;
+    font-size: 1.05rem; border-top: 3px solid var(--navy);
+  }
+  .results-table .net-row td:last-child { font-family: 'Playfair Display', serif; font-size: 1.3rem; }
+  .debit { color: var(--red); }
+  .credit { color: var(--green); }
+
+  /* SUMMARY BOXES */
+  .summary-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-bottom: 1.5rem; }
+  .sbox { background: var(--white); border-radius: 8px; padding: 1.25rem 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.07); border-top: 3px solid var(--steel); }
+  .sbox.highlight { border-top-color: var(--gold); background: var(--gold); }
+  .sbox .sbox-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--steel); margin-bottom: 0.35rem; }
+  .sbox.highlight .sbox-label { color: var(--navy); }
+  .sbox .sbox-value { font-family: 'Playfair Display', serif; font-size: 1.7rem; color: var(--navy); font-weight: 700; }
+  .sbox .sbox-sub { font-size: 0.72rem; color: var(--steel); margin-top: 0.2rem; }
+  .sbox.highlight .sbox-sub { color: var(--navy); opacity: 0.7; }
+
+  /* TOGGLE */
+  .toggle-row { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; }
+  .toggle-btn {
+    padding: 0.35rem 0.85rem; border-radius: 3px; border: 1.5px solid var(--steel);
+    background: var(--white); color: var(--charcoal); font-size: 0.78rem; font-weight: 700;
+    cursor: pointer; transition: all 0.15s; font-family: 'Lato', sans-serif;
+  }
+  .toggle-btn.active { background: var(--navy); color: var(--white); border-color: var(--navy); }
+
+  /* DISCLAIMER */
+  .disclaimer { font-size: 0.72rem; color: var(--steel); font-style: italic; text-align: center; margin-top: 2rem; line-height: 1.5; }
+
+  /* FOOTER */
+  footer { background: var(--navy); border-top: 3px solid var(--gold); padding: 1.5rem 2rem; margin-top: 3rem; }
+  .footer-inner { max-width: 1000px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-name { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.1rem; }
+  .footer-title { color: var(--gold); font-size: 0.8rem; margin-top: 0.1rem; }
+  .footer-contact { color: var(--steel); font-size: 0.8rem; text-align: right; line-height: 1.8; }
+
+  @media (max-width: 640px) {
+    .summary-row { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 1.6rem; }
+    nav .nav-contact { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div>
+    <div class="nav-brand">Dash-2 Real Estate</div>
+    <div class="nav-tag">Your Real Estate Wingman!</div>
+  </div>
+  <div class="nav-contact">
+    (757) 550-7122 &nbsp;|&nbsp; craig@craigsnyderteam.com
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-label">Seller Net Proceeds Estimate &mdash; Confidential Draft</div>
+    <h1>221 Cypress Road</h1>
+    <div class="sub">Portsmouth, Virginia 23701 &nbsp;&bull;&nbsp; Adjust any input below to recalculate instantly</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- SUMMARY BOXES -->
+  <div class="summary-row">
+    <div class="sbox">
+      <div class="sbox-label">Sale Price</div>
+      <div class="sbox-value" id="sum-price">$395,000</div>
+      <div class="sbox-sub">Recommended list price</div>
+    </div>
+    <div class="sbox">
+      <div class="sbox-label">Total Deductions</div>
+      <div class="sbox-value" id="sum-deductions" style="color:var(--red);">—</div>
+      <div class="sbox-sub">Costs, commissions, mortgage payoff</div>
+    </div>
+    <div class="sbox highlight">
+      <div class="sbox-label">Estimated Cash to Seller</div>
+      <div class="sbox-value" id="sum-net">—</div>
+      <div class="sbox-sub">Before proration adjustments</div>
+    </div>
+  </div>
+
+  <!-- INPUTS -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Transaction Inputs</h2>
+      <span class="badge">Editable</span>
+    </div>
+    <div class="card-body">
+      <div class="input-grid">
+        <div class="input-group">
+          <label>Sale Price ($)</label>
+          <input type="number" id="inp-price" value="395000" oninput="calc()">
+          <div class="hint">Recommended: $395,000</div>
+        </div>
+        <div class="input-group">
+          <label>Mortgage Payoff ($)</label>
+          <input type="number" id="inp-mortgage" value="234037" oninput="calc()">
+          <div class="hint">Est. balance at 3.5%/30yr after 69 payments — verify actual payoff</div>
+        </div>
+        <div class="input-group">
+          <label>Buyer Agent Commission (%)</label>
+          <input type="number" id="inp-buyer-comm" value="3" step="0.25" oninput="calc()">
+          <div class="hint">Typically 2.5–3%</div>
+        </div>
+        <div class="input-group">
+          <label>Listing Agent Commission (%)</label>
+          <input type="number" id="inp-seller-comm" value="3" step="0.25" oninput="calc()">
+          <div class="hint">Dash-2 listing side</div>
+        </div>
+        <div class="input-group">
+          <label>Seller Concessions ($)</label>
+          <input type="number" id="inp-concessions" value="0" oninput="calc()">
+          <div class="hint">Closing cost credits to buyer</div>
+        </div>
+        <div class="input-group">
+          <label>Annual Property Tax ($)</label>
+          <input type="number" id="inp-tax" value="4069" oninput="calc()">
+          <div class="hint">2025 actual: $4,068.81</div>
+        </div>
+        <div class="input-group">
+          <label>Prorated Tax Days Owed</label>
+          <input type="number" id="inp-tax-days" value="180" oninput="calc()">
+          <div class="hint">Days of year seller owns pre-close</div>
+        </div>
+        <div class="input-group">
+          <label>Title / Settlement Fee ($)</label>
+          <input type="number" id="inp-title" value="600" oninput="calc()">
+          <div class="hint">Seller's portion only</div>
+        </div>
+        <div class="input-group">
+          <label>Grantor's Tax ($)</label>
+          <input type="number" id="inp-grantor" value="395" oninput="calc()">
+          <div class="hint">VA: $1 per $1,000 of sale price</div>
+        </div>
+        <div class="input-group">
+          <label>Recording / Other Fees ($)</label>
+          <input type="number" id="inp-recording" value="50" oninput="calc()">
+          <div class="hint">Deed release, misc.</div>
+        </div>
+        <div class="input-group">
+          <label>Home Warranty ($)</label>
+          <input type="number" id="inp-warranty" value="0" oninput="calc()">
+          <div class="hint">Optional seller offer</div>
+        </div>
+        <div class="input-group">
+          <label>Repairs / Credits ($)</label>
+          <input type="number" id="inp-repairs" value="0" oninput="calc()">
+          <div class="hint">Post-inspection negotiated items</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="card">
+    <div class="card-header">
+      <h2>Net Proceeds Detail</h2>
+    </div>
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th style="width:60%">Item</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+      <tbody id="results-body">
+      </tbody>
+    </table>
+  </div>
+
+  <!-- EQUITY NOTE -->
+  <div class="card">
+    <div class="card-header"><h2>Equity Summary</h2></div>
+    <div class="card-body">
+      <table class="results-table">
+        <tbody>
+          <tr>
+            <td>Purchase Price (Jun 2020)</td>
+            <td class="credit">$260,000</td>
+          </tr>
+          <tr>
+            <td>Estimated Sale Price</td>
+            <td id="eq-price">$395,000</td>
+          </tr>
+          <tr>
+            <td>Gross Appreciation</td>
+            <td id="eq-appreciation" class="credit">—</td>
+          </tr>
+          <tr>
+            <td>Appreciation %</td>
+            <td id="eq-pct" class="credit">—</td>
+          </tr>
+          <tr>
+            <td style="font-weight:700;color:var(--navy)">Estimated Cash to Seller After All Costs</td>
+            <td id="eq-net" style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--green)">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    This estimate is for discussion purposes only. Actual proceeds will vary based on final sale price, current mortgage payoff balance, proration dates, and negotiated terms.<br>
+    Prepared by Craig Snyder, Broker/Owner &mdash; Dash-2 Real Estate &mdash; (757) 550-7122 &mdash; craigsnyderteam.com
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-name">Craig Snyder</div>
+      <div class="footer-title">Broker / Owner &nbsp;&bull;&nbsp; Dash-2 Real Estate &nbsp;&bull;&nbsp; Your Real Estate Wingman!</div>
+    </div>
+    <div class="footer-contact">
+      (757) 550-7122<br>
+      craig@craigsnyderteam.com<br>
+      craigsnyderteam.com
+    </div>
+  </div>
+</footer>
+
+<script>
+  function fmt(n) {
+    if (isNaN(n)) return '—';
+    const abs = Math.abs(n);
+    const str = '$' + abs.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    return n < 0 ? '-' + str : str;
+  }
+
+  function v(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+  function calc() {
+    const price       = v('inp-price');
+    const mortgage    = v('inp-mortgage');
+    const buyerComm   = price * v('inp-buyer-comm') / 100;
+    const sellerComm  = price * v('inp-seller-comm') / 100;
+    const concessions = v('inp-concessions');
+    const annualTax   = v('inp-tax');
+    const taxDays     = v('inp-tax-days');
+    const proratedTax = (annualTax / 365) * taxDays;
+    const title       = v('inp-title');
+    const grantor     = v('inp-grantor');
+    const recording   = v('inp-recording');
+    const warranty    = v('inp-warranty');
+    const repairs     = v('inp-repairs');
+
+    const totalCommission  = buyerComm + sellerComm;
+    const totalClosingCosts = concessions + proratedTax + title + grantor + recording + warranty + repairs;
+    const totalDeductions  = mortgage + totalCommission + totalClosingCosts;
+    const netProceeds      = price - totalDeductions;
+
+    // Update summary boxes
+    document.getElementById('sum-price').textContent = fmt(price);
+    document.getElementById('sum-deductions').textContent = fmt(totalDeductions);
+    document.getElementById('sum-net').textContent = fmt(netProceeds);
+
+    // Build results table
+    const rows = [
+      { type: 'section', label: 'Sale' },
+      { label: 'Gross Sale Price', amount: price, cls: 'credit' },
+
+      { type: 'section', label: 'Commission' },
+      { label: `Buyer Agent Commission (${v('inp-buyer-comm')}%)`, amount: -buyerComm },
+      { label: `Listing Agent Commission (${v('inp-seller-comm')}%)`, amount: -sellerComm },
+      { type: 'subtotal', label: 'Total Commission', amount: -totalCommission },
+
+      { type: 'section', label: 'Closing Costs & Adjustments' },
+      { label: 'Seller Concessions to Buyer', amount: -concessions },
+      { label: `Prorated Property Tax (${Math.round(taxDays)} days of $${annualTax.toLocaleString()}/yr)`, amount: -proratedTax },
+      { label: 'Title / Settlement Fee', amount: -title },
+      { label: "Grantor's Tax (VA)", amount: -grantor },
+      { label: 'Recording / Other Fees', amount: -recording },
+      { label: 'Home Warranty', amount: -warranty },
+      { label: 'Repairs / Negotiated Credits', amount: -repairs },
+      { type: 'subtotal', label: 'Total Closing Costs', amount: -totalClosingCosts },
+
+      { type: 'section', label: 'Mortgage' },
+      { label: 'Estimated Mortgage Payoff', amount: -mortgage },
+
+      { type: 'net', label: 'ESTIMATED CASH TO SELLER', amount: netProceeds },
+    ];
+
+    const tbody = document.getElementById('results-body');
+    tbody.innerHTML = '';
+    rows.forEach(row => {
+      const tr = document.createElement('tr');
+      if (row.type === 'section') {
+        tr.className = 'section-row';
+        tr.innerHTML = `<td colspan="2">${row.label}</td>`;
+      } else if (row.type === 'subtotal') {
+        tr.className = 'subtotal-row';
+        const cls = row.amount < 0 ? 'debit' : 'credit';
+        tr.innerHTML = `<td>${row.label}</td><td class="${cls}">${fmt(row.amount)}</td>`;
+      } else if (row.type === 'net') {
+        tr.className = 'net-row';
+        const cls = row.amount >= 0 ? 'credit' : 'debit';
+        tr.innerHTML = `<td>${row.label}</td><td class="${cls}">${fmt(row.amount)}</td>`;
+      } else {
+        const cls = row.cls || (row.amount < 0 ? 'debit' : '');
+        const displayAmt = row.amount < 0 ? fmt(row.amount) : fmt(row.amount);
+        tr.innerHTML = `<td>${row.label}</td><td class="${cls}">${displayAmt}</td>`;
+      }
+      tbody.appendChild(tr);
+    });
+
+    // Equity summary
+    const purchasePrice = 260000;
+    const appreciation = price - purchasePrice;
+    const pct = ((appreciation / purchasePrice) * 100).toFixed(1);
+    document.getElementById('eq-price').textContent = fmt(price);
+    document.getElementById('eq-appreciation').textContent = fmt(appreciation);
+    document.getElementById('eq-pct').textContent = pct + '%';
+    document.getElementById('eq-net').textContent = fmt(netProceeds);
+  }
+
+  // Run on load
+  calc();
+</script>
+</body>
+</html>
